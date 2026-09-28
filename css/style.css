@@ -1,13 +1,13 @@
 /* ===== Шрифты (как в макете Figma) ===== */
 /* FoglihtenNo06 — заголовки (SIL OFL) */
-@font-face{font-family:"FoglihtenNo06";src:local("FoglihtenNo06"),url(../fonts/foglihtenno06.woff2) format("woff2");font-weight:100 900;font-display:swap} /* одно начертание: диапазон весов, чтобы браузер не рисовал «жирный» для 500 */
+@font-face{font-family:"FoglihtenNo06";src:local("FoglihtenNo06"),url(../fonts/foglihtenno06.woff2) format("woff2");font-weight:100 900;font-display:block} /* одно начертание: диапазон весов, чтобы браузер не рисовал «жирный» для 500 */
 /* Source Serif Pro — основной текст */
 @font-face{font-family:"Source Serif Pro";src:url(../fonts/sourceserifpro-cyr.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
 @font-face{font-family:"Source Serif Pro";src:url(../fonts/sourceserifpro-lat.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F;font-display:swap}
 /* Equilibrist — меню.
    Установленный в системе шрифт «Equilibrist» используется напрямую (font-family ниже).
    Для посетителей без установленного шрифта — файл в fonts/: equilibrist-light.otf (.ttf или .woff2). */
-@font-face{font-family:"Equilibrist Web";src:url(../fonts/equilibrist-light.woff2) format("woff2"),url(../fonts/equilibrist-light.otf) format("opentype"),url(../fonts/equilibrist-light.ttf) format("truetype");font-weight:300;font-display:swap}
+@font-face{font-family:"Equilibrist Web";src:url(../fonts/equilibrist-light.woff2) format("woff2"),url(../fonts/equilibrist-light.otf) format("opentype"),url(../fonts/equilibrist-light.ttf) format("truetype");font-weight:300;font-display:block}
 /* Noto Sans Display Light — текст про грант */
 @font-face{font-family:"Noto Sans Display";src:url(../fonts/notosansdisplay-300-cyr.woff2) format("woff2");font-weight:300;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
 @font-face{font-family:"Noto Sans Display";src:url(../fonts/notosansdisplay-300-lat.woff2) format("woff2");font-weight:300;unicode-range:U+0000-00FF,U+2000-206F;font-display:swap}

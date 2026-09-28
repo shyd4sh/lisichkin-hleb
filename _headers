@@ -1,0 +1,8 @@
+# Netlify: браузер кэширует шрифты, стили и картинки,
+# поэтому при переходе между страницами они не загружаются заново
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=604800
+/css/*
+  Cache-Control: public, max-age=3600
