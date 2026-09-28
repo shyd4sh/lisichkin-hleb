@@ -4,8 +4,10 @@
 /* Source Serif Pro — основной текст */
 @font-face{font-family:"Source Serif Pro";src:url(../fonts/sourceserifpro-cyr.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
 @font-face{font-family:"Source Serif Pro";src:url(../fonts/sourceserifpro-lat.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F;font-display:swap}
-/* Equilibrist — меню. Файл шрифта положить в fonts/equilibrist.woff2 (или .otf) */
-@font-face{font-family:"Equilibrist";src:local("Equilibrist Light"),local("Equilibrist-Light"),local("Equilibrist"),url(../fonts/equilibrist-light.woff2) format("woff2"),url(../fonts/equilibrist-light.otf) format("opentype");font-weight:300;font-display:swap}
+/* Equilibrist — меню.
+   Установленный в системе шрифт «Equilibrist» используется напрямую (font-family ниже).
+   Для посетителей без установленного шрифта — файл в fonts/: equilibrist-light.otf (.ttf или .woff2). */
+@font-face{font-family:"Equilibrist Web";src:url(../fonts/equilibrist-light.woff2) format("woff2"),url(../fonts/equilibrist-light.otf) format("opentype"),url(../fonts/equilibrist-light.ttf) format("truetype");font-weight:300;font-display:swap}
 /* Noto Sans Display Light — текст про грант */
 @font-face{font-family:"Noto Sans Display";src:url(../fonts/notosansdisplay-300-cyr.woff2) format("woff2");font-weight:300;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
 @font-face{font-family:"Noto Sans Display";src:url(../fonts/notosansdisplay-300-lat.woff2) format("woff2");font-weight:300;unicode-range:U+0000-00FF,U+2000-206F;font-display:swap}
@@ -78,7 +80,7 @@ a{color:inherit;text-decoration:none}
   left:0; right:0;
   top:calc(75 * var(--hy));
   height:calc(16 * var(--hs));
-  font-family:"Equilibrist","FoglihtenNo06",Georgia,serif;
+  font-family:"Equilibrist Web","Equilibrist Light","Equilibrist","FoglihtenNo06",Georgia,serif;
   font-weight:300;
   font-size:calc(9 * var(--fig-h));
   line-height:1;
