@@ -1,0 +1,286 @@
+/* ===== Шрифты (как в макете Figma) ===== */
+/* FoglihtenNo06 — заголовки (SIL OFL) */
+@font-face{font-family:"FoglihtenNo06";src:local("FoglihtenNo06"),url(../fonts/foglihtenno06.woff2) format("woff2");font-weight:100 900;font-display:swap} /* одно начертание: диапазон весов, чтобы браузер не рисовал «жирный» для 500 */
+/* Source Serif Pro — основной текст */
+@font-face{font-family:"Source Serif Pro";src:url(../fonts/sourceserifpro-cyr.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
+@font-face{font-family:"Source Serif Pro";src:url(../fonts/sourceserifpro-lat.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F;font-display:swap}
+/* Equilibrist — меню. Файл шрифта положить в fonts/equilibrist.woff2 (или .otf) */
+@font-face{font-family:"Equilibrist";src:local("Equilibrist Light"),local("Equilibrist-Light"),local("Equilibrist"),url(../fonts/equilibrist-light.woff2) format("woff2"),url(../fonts/equilibrist-light.otf) format("opentype");font-weight:300;font-display:swap}
+/* Noto Sans Display Light — текст про грант */
+@font-face{font-family:"Noto Sans Display";src:url(../fonts/notosansdisplay-300-cyr.woff2) format("woff2");font-weight:300;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap}
+@font-face{font-family:"Noto Sans Display";src:url(../fonts/notosansdisplay-300-lat.woff2) format("woff2");font-weight:300;unicode-range:U+0000-00FF,U+2000-206F;font-display:swap}
+
+/*
+  Система единиц.
+  Макеты нарисованы шириной 1440px. Каждая страница ровно в один экран:
+    --vx  — 1px макета по горизонтали (растягивается по ширине экрана)
+    --py  — 1px макета по вертикали   (растягивается по высоте экрана)
+    --ps  — 1px для размеров шрифтов и картинок: меньшее из двух,
+            чтобы ничего не наезжало и не вылезало за экран.
+  Так страница без прокрутки занимает и 1920×1080 (16:9), и 1920×1200 (16:10),
+  и любое другое десктопное разрешение.
+*/
+:root{
+  --vx: calc(100vw / 1440);
+  --hy: calc(100vh / 898);
+  --hs: min(var(--vx), var(--hy));
+  /* 1px Figma: макет в Figma шириной 744px, вёрстка считается от 1440 → ×1.93548 */
+  --fig-h: calc(var(--hs) * 1.93548);
+  --bg:#040203;
+  --text:#f4efec;
+  --muted:#d2cbc7;
+}
+@supports (height:100dvh){ :root{ --hy: calc(100dvh / 898); } }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text)}
+body{font-family:"Source Serif Pro",Georgia,serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+a{color:inherit;text-decoration:none}
+
+.page{
+  --py: calc(100vh / var(--H));
+  --ps: min(var(--vx), var(--py));
+  --fig: calc(var(--ps) * 1.93548);   /* размеры шрифтов — прямо из Figma */
+  position:relative;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background-color:var(--bg);
+}
+@supports (height:100dvh){ .page{ height:100dvh; --py: calc(100dvh / var(--H)); } }
+
+/* ===== Шапка (одинаковая на всех страницах) ===== */
+/* Блок .logo = видимый рисунок логотипа по макету (153px при ширине 1440).
+   У файла logo.png вокруг рисунка прозрачные поля — переменные ниже их компенсируют:
+   --logo-l / --logo-t — поле слева / сверху, --logo-w — ширина рисунка (всё в долях ширины файла).
+   Если логотип обрезан вплотную к рисунку, поставь 0, 0 и 1. */
+.logo{
+  --logo-l:0.201;
+  --logo-t:0.124;
+  --logo-w:0.613;
+  position:absolute; z-index:5;
+  left:calc(47.6 * var(--vx));
+  top:calc(29.2 * var(--hy));
+  width:calc(152.8 * var(--hs));
+  display:block;
+}
+.logo img{
+  display:block;
+  height:auto;
+  width:calc(100% / var(--logo-w));
+  max-width:none;
+  margin-left:calc(-100% * var(--logo-l) / var(--logo-w));
+  margin-top:calc(-100% * var(--logo-t) / var(--logo-w));
+}
+
+.nav{
+  position:absolute; z-index:5;
+  left:0; right:0;
+  top:calc(75 * var(--hy));
+  height:calc(16 * var(--hs));
+  font-family:"Equilibrist","FoglihtenNo06",Georgia,serif;
+  font-weight:300;
+  font-size:calc(9 * var(--fig-h));
+  line-height:1;
+  letter-spacing:0;
+  text-transform:uppercase;
+}
+/* Подчёркивание при наведении у всех пунктов меню — прорисовывается слева направо */
+.nav a{position:absolute;top:0;white-space:nowrap}
+/* места пунктов — как в макете */
+.nav a:nth-child(1){left:calc(319 * var(--vx))}
+.nav a:nth-child(2){left:calc(658.5 * var(--vx))}
+.nav a:nth-child(3){left:calc(1061 * var(--vx))}
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  bottom:calc(-5 * var(--hs));
+  height:1px;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:right center;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.nav a:hover::after,
+.nav a:focus-visible::after{transform:scaleX(1);transform-origin:left center}
+
+/* Общие заголовки / текст */
+.h-display{
+  font-family:"FoglihtenNo06",Georgia,serif;
+  font-weight:500;
+  line-height:1;
+  white-space:nowrap;
+}
+.copy{color:var(--muted)}
+.copy p{white-space:nowrap}
+.abs{position:absolute}
+
+
+/* ===== 0. Главная ===== */
+.page--home{
+  --H:902;
+  background:#0b0908 url(../assets/hero.jpg) center 60% / cover no-repeat;
+}
+.page--home .title{
+  left:calc(218 * var(--vx));
+  top:calc(198 * var(--py));
+  font-size:calc(16 * var(--fig));
+  line-height:calc(39 * var(--ps));
+  text-transform:lowercase;
+  white-space:nowrap;
+}
+.page--home .grant{
+  left:calc(738 * var(--vx));
+  top:calc(782 * var(--py));
+  font-size:calc(8 * var(--fig));
+  line-height:calc(22 * var(--ps));
+  font-family:"Noto Sans Display",Arial,sans-serif;
+  font-weight:300;
+  letter-spacing:0;
+  text-transform:uppercase;
+  color:#d9d3ce;
+}
+.page--home .grant p{white-space:nowrap}
+
+/* ===== 1. О нас — «что мы делаем?» ===== */
+.page--about{
+  --H:898;
+  --blur-pad:40px;                 /* запас, чтобы размытие не «съедало» край фото */
+  background:#030204;
+}
+/* Фото хлеба (вертикальное, как в Figma), кадрировано по макету:
+   ширина 1463px при макете 1440, левый край −13px, низ уходит на 522px ниже экрана. */
+.page--about::before{
+  content:"";
+  position:absolute;
+  left:calc(-1 * var(--blur-pad));
+  bottom:calc(-1 * var(--blur-pad));
+  top:0; right:0;
+  background:url(../assets/about-bg.jpg) no-repeat;
+  background-size:calc(1463 * var(--ps)) auto;
+  background-position:
+    left calc(var(--blur-pad) - 13 * var(--vx))
+    bottom calc(var(--blur-pad) - 522 * var(--ps));
+  filter:blur(calc(5 * var(--ps)));
+  z-index:0;
+  pointer-events:none;
+}
+.page--about .title{
+  left:calc(643 * var(--vx));
+  top:calc(199 * var(--py));
+  font-size:calc(40 * var(--fig));
+  transform:scaleX(1);
+  transform-origin:left top;
+}
+.page--about .title .q{font-size:1em}
+.page--about .copy{
+  left:calc(797.5 * var(--vx));
+  top:calc(309 * var(--py));
+  font-size:calc(9 * var(--fig));
+  line-height:calc(21.4 * var(--ps));
+}
+.page--about .copy p + p{margin-top:calc(21.4 * var(--ps))}
+
+/* ===== Страницы с фактурным фоном ===== */
+.page--textured{
+  background:#1a1a1b url(../assets/texture.jpg) center / cover no-repeat;
+}
+.center-x{transform:translateX(-50%);text-align:center}
+
+/* ===== 2. Наша продукция ===== */
+.page--products{ --H:1135; }
+/* Контент продукции масштабируется одним коэффициентом и центрируется:
+   хлеб и текст стоят так же близко друг к другу, как в макете, на любом соотношении сторон.
+   Координата по X = центр экрана + (X_макета − 720) × --ps */
+.page--products .title{
+  left:50%;
+  top:calc(187 * var(--py));
+  font-size:calc(36 * var(--fig));
+  transform:translateX(-50%);
+}
+.page--products .copy{
+  font-size:calc(10 * var(--fig));
+  line-height:calc(25.1 * var(--ps));
+}
+.page--products .copy-1{ left:calc(50% + (477 - 720) * var(--ps)); top:calc(377 * var(--py)); }
+.page--products .copy-2{ left:calc(50% + (925 - 720) * var(--ps)); top:calc(727 * var(--py)); }
+.page--products .copy-2 > * + *{margin-top:calc(25.1 * var(--ps))}
+.page--products .copy ul{list-style:none}
+.page--products .copy li{white-space:nowrap}
+.page--products .copy li::before{content:"•";margin-right:.55em}
+.page--products .img-sliced{ left:calc(50% + (1058 - 720) * var(--ps)); top:calc(327 * var(--py)); width:calc(379 * var(--ps)); transform:translateX(-50%); }
+.page--products .img-round{ left:calc(50% + (338 - 720) * var(--ps)); top:calc(734 * var(--py)); width:calc(335 * var(--ps)); transform:translateX(-50%); }
+
+/* ===== 3. Контакты ===== */
+.page--contacts{ --H:894; }
+.page--contacts .title{
+  left:50%;
+  top:calc(187 * var(--py));
+  font-size:calc(36 * var(--fig));
+  transform:translateX(-50%);
+}
+.page--contacts .subtitle{
+  left:50%;
+  top:calc(264 * var(--py));
+  font-size:calc(10 * var(--fig));
+  line-height:1.4;
+  color:var(--muted);
+}
+.page--contacts .person{
+  left:50%;
+  top:calc(350 * var(--py));
+  font-size:calc(13 * var(--fig));
+  line-height:calc(31.5 * var(--ps));
+  color:var(--muted);
+}
+.page--contacts .person a:hover{color:var(--text)}
+.page--contacts .address{
+  left:50%;
+  top:calc(480 * var(--py));
+  font-size:calc(10 * var(--fig));
+  line-height:calc(25 * var(--ps));
+  color:var(--muted);
+}
+.page--contacts .img-round{ left:calc(-9 * var(--ps)); top:calc(277 * var(--py)); width:calc(320 * var(--ps)); transform:rotate(22deg); }
+.page--contacts .img-flour{ left:calc(1230 * var(--vx)); top:calc(443 * var(--py)); width:calc(367 * var(--ps)); transform:translateX(-50%); }
+
+.abs img, img.abs{display:block;height:auto}
+
+
+/* ===== Телефоны и узкие окна: обычная вёрстка с прокруткой ===== */
+@media (max-width: 800px), (max-aspect-ratio: 1/1){
+  :root{ --vx:1px; --hy:1px; --hs:1px; }
+  body{overflow:auto}
+  .page{ --py:1px; --ps:1px; height:auto; min-height:100vh; padding:24px 16px 48px; display:flex; flex-direction:column; align-items:center; text-align:center }
+  .logo,.nav,.abs{position:static;transform:none !important}
+  .logo{width:96px;align-self:flex-start}
+  .nav{align-self:stretch;flex-wrap:wrap;gap:12px 20px;justify-content:flex-start;font-size:14px;letter-spacing:.12em;margin-top:16px}
+  .nav{height:auto;display:flex}
+  .nav a{position:relative;left:auto !important}
+  .nav a::after{right:.12em;bottom:-4px}
+  .h-display{white-space:normal;margin:36px 0 16px}
+  .copy p,.copy li,.page--products .copy li{white-space:normal}
+  .copy br{display:none}
+  .page--about{ padding-bottom:90vw; text-align:left; align-items:flex-start }
+  .page--about::before{ top:auto; height:120vw; background-size:130vw auto; background-position:left -2vw bottom -70vw; filter:blur(3px) }
+  .page--about .title{font-size:clamp(44px,13vw,72px)}
+  .page--home{ background-position:55% 100%; background-size:auto 70vh; justify-content:flex-start; text-align:left; align-items:flex-start }
+  .page--home .title{font-size:clamp(28px,8vw,44px);line-height:1.1;white-space:normal}
+  .page--home .grant{margin-top:auto;font-size:11px;line-height:1.5;text-align:center;align-self:stretch;background:rgba(0,0,0,.55);padding:12px;border-radius:4px}
+  .page--home .grant p{white-space:normal}
+  .page--about .copy{font-size:15px;line-height:23px}
+  .page--about .copy p + p{margin-top:16px}
+  .page--products .title{font-size:clamp(36px,10vw,60px)}
+  .page--products .copy{font-size:15px;line-height:23px;margin:16px 0}
+  .page--products .img-sliced,.page--products .img-round{width:min(300px,80vw);margin:16px 0}
+  .page--contacts .title{font-size:clamp(40px,12vw,64px)}
+  .page--contacts .subtitle,.page--contacts .address{font-size:14px}
+  .page--contacts .person{font-size:18px;line-height:28px;margin:24px 0 16px}
+  .page--contacts .img-round,.page--contacts .img-flour{width:min(260px,70vw);margin:24px 0 0}
+  .page--products .img-sliced{order:2}
+  .page--products .copy-1{order:3}
+  .page--products .img-round{order:4}
+  .page--products .copy-2{order:5}
+}
+sup{font-size:.6em;line-height:0;vertical-align:super}
