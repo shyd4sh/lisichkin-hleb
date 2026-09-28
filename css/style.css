@@ -57,9 +57,9 @@ a{color:inherit;text-decoration:none}
    --logo-l / --logo-t — поле слева / сверху, --logo-w — ширина рисунка (всё в долях ширины файла).
    Если логотип обрезан вплотную к рисунку, поставь 0, 0 и 1. */
 .logo{
-  --logo-l:0.201;
-  --logo-t:0.124;
-  --logo-w:0.613;
+  --logo-l:0.1973;
+  --logo-t:0.125;
+  --logo-w:0.6152;
   position:absolute; z-index:5;
   left:calc(47.6 * var(--vx));
   top:calc(29.2 * var(--hy));
@@ -122,7 +122,7 @@ a{color:inherit;text-decoration:none}
 /* ===== 0. Главная ===== */
 .page--home{
   --H:902;
-  background:#0b0908 url(../assets/hero.jpg) center 60% / cover no-repeat;
+  background:#0b0908 url(../assets/hero.webp) center 60% / cover no-repeat;
 }
 .page--home .title{
   left:calc(218 * var(--vx));
@@ -144,6 +144,7 @@ a{color:inherit;text-decoration:none}
   color:#d9d3ce;
 }
 .page--home .grant p{white-space:nowrap}
+.page--home .grant{text-shadow:0 0 6px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9)}
 
 /* ===== 1. О нас — «что мы делаем?» ===== */
 .page--about{
@@ -159,7 +160,7 @@ a{color:inherit;text-decoration:none}
   left:calc(-1 * var(--blur-pad));
   bottom:calc(-1 * var(--blur-pad));
   top:0; right:0;
-  background:url(../assets/about-bg.jpg) no-repeat;
+  background:url(../assets/about-bg.webp) no-repeat;
   background-size:calc(1463 * var(--ps)) auto;
   background-position:
     left calc(var(--blur-pad) - 13 * var(--vx))
@@ -186,7 +187,7 @@ a{color:inherit;text-decoration:none}
 
 /* ===== Страницы с фактурным фоном ===== */
 .page--textured{
-  background:#1a1a1b url(../assets/texture.jpg) center / cover no-repeat;
+  background:#1a1a1b url(../assets/texture.webp) center / cover no-repeat;
 }
 .center-x{transform:translateX(-50%);text-align:center}
 
